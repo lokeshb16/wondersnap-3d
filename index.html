@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>WonderSnap - 3D Spatial Learning</title>
+  <link rel="stylesheet" href="./src/style.css">
+  <script src="https://cdn.jsdelivr.net/npm/@mediapipe/camera_utils/camera_utils.js" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@mediapipe/hands/hands.js" crossorigin="anonymous"></script>
+</head>
+<body>
+  <!-- Webcam feed (hidden) -->
+  <video id="webcam" autoplay playsinline muted style="position: fixed; bottom: 20px; left: 20px; width: 180px; height: 135px; border: 2px solid #00ffcc; border-radius: 8px; z-index: 9999; object-fit: cover;"></video>
+
+  <!-- 3D Canvas -->
+  <div id="canvas-container"></div>
+  
+  <!-- Error Banner -->
+  <div id="error-banner" style="display: none; position: absolute; top: 0; left: 0; width: 100%; background: rgba(255, 0, 0, 0.8); color: white; padding: 1rem; text-align: center; z-index: 1000; font-family: monospace; font-size: 1.2rem; font-weight: bold; border-bottom: 2px solid #ff0000; text-transform: uppercase;"></div>
+
+  <!-- Cyberpunk HUD Overlay -->
+  <div class="hud-container">
+    <header class="hud-header">
+      <h1 class="glitch" data-text="WONDERSNAP">WONDERSNAP</h1>
+      <div class="fps-counter">FPS: <span id="fps">0</span></div>
+    </header>
+
+    <main class="hud-main">
+      <div class="gesture-panel">
+        <div class="panel-title">DETECTED GESTURE</div>
+        <div class="gesture-tag" id="current-gesture">WAITING FOR HANDS...</div>
+      </div>
+
+      <div class="model-info">
+        <div class="panel-title">CURRENT MODEL</div>
+        <div class="model-name" id="model-name">HUMAN HEART</div>
+        <div class="instructions">
+          <ul>
+            <li><span class="highlight">FIST</span>: Assemble Model</li>
+            <li><span class="highlight">OPEN HAND</span>: Explode View</li>
+            <li><span class="highlight">PINCH</span>: Highlight Region</li>
+            <li><span class="highlight">WRIST TWIST</span>: Rotate Model</li>
+          </ul>
+        </div>
+      </div>
+    </main>
+
+    <footer class="hud-footer">
+      <button class="cyber-button" id="btn-prev">PREV MODEL</button>
+      <button class="cyber-button" id="btn-next">NEXT MODEL</button>
+      <div id="status-message" class="status-msg">INITIALIZING NEURAL NET...</div>
+    </footer>
+  </div>
+
+  <!-- Native ES Module entry point -->
+  <script type="module" src="./src/main.js"></script>
+</body>
+</html>
